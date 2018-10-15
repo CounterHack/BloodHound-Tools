@@ -34,7 +34,7 @@ class MainMenu(cmd.Cmd):
 		self.m = Messages()
 		self.url = "bolt://localhost:7687"
 		self.username = "neo4j"
-		self.password = "neo4jj"
+		self.password = "Myra"
 		self.driver = None
 		self.connected = False
 		self.num_nodes = 500
@@ -326,11 +326,11 @@ class MainMenu(cmd.Cmd):
 
 		
 		print "Generating Group Nodes"
-		weighted_parts = ["IT"] * 7 + ["HR"] * 13 + ["MARKETING"] * 30 + ["OPERATIONS"] * 20 + ["BIDNESS"] * 30
+		weighted_parts = ["IT"] * 7 + ["WRAPPING"] * 13 + ["DELIVERY"] * 30 + ["TOYMAKING"] * 20 + ["LOGISTICS"] * 50
 		props = []
 		for i in xrange(1, self.num_nodes + 1):
 			dept = random.choice(weighted_parts)
-			group_name = "{}{:05d}@AD.KRINGLECASTLE.COM".format(dept,i)
+			group_name = "{}_{:05d}@AD.KRINGLECASTLE.COM".format(dept,i)
 			groups.append(group_name)
 			props.append({'name':group_name})
 			if len(props) > 500:
@@ -367,7 +367,7 @@ class MainMenu(cmd.Cmd):
 		for group in groups:
 			if (random.randrange(0,100) < 10):
 				num_nest = random.randrange(1, max_nest)
-				dept = group[0:-19]
+				dept = group.split('_')[0]
 				dpt_groups = [x for x in groups if dept in x]
 				if num_nest > len(dpt_groups):
 					num_nest = random.randrange(1, len(dpt_groups))
